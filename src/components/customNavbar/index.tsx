@@ -1,8 +1,11 @@
 import { Navbar, Container, Button } from 'react-bootstrap'
 import { BsFillHandThumbsUpFill } from 'react-icons/bs'
+import { useUserContext } from '../../contexts'
 import './style.css'
 
 const CustomNavbar = () => {
+	const { user, signOut } = useUserContext()
+
 	return (
 		<Navbar style={{ backgroundColor: '#5fd9fb' }} expand="lg">
 			<Container>
@@ -12,7 +15,12 @@ const CustomNavbar = () => {
 
 				<Navbar.Toggle />
 				<Navbar.Collapse className="justify-content-end">
-					<Button variant="outline-dark">Sign out</Button>
+					<Navbar.Text className="signin_text">
+						Signed in as: {user}
+					</Navbar.Text>
+					<Button variant="outline-dark" onClick={signOut}>
+						Sign out
+					</Button>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { IPage } from './@types'
 import { ELayout, layouts } from './layouts'
 import pages from './pages'
@@ -13,15 +13,13 @@ const Router = () => {
 	}
 
 	return (
-		<BrowserRouter>
-			<Routes>
-				{layouts.map((layout, i) => (
-					<Route key={i} path={layout.path} element={<layout.component />}>
-						{filterPagesByLayout(layout.identifier).map(mapPages)}
-					</Route>
-				))}
-			</Routes>
-		</BrowserRouter>
+		<Routes>
+			{layouts.map((layout, i) => (
+				<Route key={i} path={layout.path} element={<layout.component />}>
+					{filterPagesByLayout(layout.identifier).map(mapPages)}
+				</Route>
+			))}
+		</Routes>
 	)
 }
 
