@@ -1,7 +1,6 @@
-import SignInPage from './signIn'
-import SignUpPage from './signUp'
-import NotFoundPage from './NotFound'
 import { ELayout } from '../layouts'
+import NotFoundPage from './NotFound'
+import { SignInPage, SignUpPage } from './authPages'
 
 const pages = [
 	{ component: SignInPage, layout: ELayout.Auth, path: 'sign-in' },
