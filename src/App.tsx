@@ -1,3 +1,7 @@
-const App = () => <h3>Hello World</h3>
+import Router from './router'
+
+const App = () => {
+	return <Router />
+}
 
 export default App
