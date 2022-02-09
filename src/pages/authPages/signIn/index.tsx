@@ -1,30 +1,31 @@
 import { Button, Col, Container, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { colConfig } from '..'
 import '../style.css'
 
 const SignInPage = () => {
 	return (
-		<Container>
+		<Container fluid>
 			<h1 className="form_title">Sign in</h1>
 			{/* Email */}
-			<Form.Group className="mb-3">
+			<Col lg={colConfig}>
 				<Form.Label>Username</Form.Label>
 				<Form.Control type="text" />
-			</Form.Group>
+			</Col>
 
 			{/* Password */}
-			<Form.Group className="mb-3">
+			<Col lg={colConfig}>
 				<Form.Label>Password</Form.Label>
 				<Form.Control type="password" />
-			</Form.Group>
+			</Col>
 
-			<Col className="form_link">
+			<Col lg={colConfig} className="form_link">
 				<Link to="/auth/sign-up">Dont have an account?</Link>
 			</Col>
 
-			<div className="d-grid">
+			<Col lg={colConfig} className="d-grid">
 				<Button variant="primary">Sign in</Button>
-			</div>
+			</Col>
 		</Container>
 	)
 }

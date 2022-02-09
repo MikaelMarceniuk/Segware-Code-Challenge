@@ -1,5 +1,6 @@
 import { Container, Form, Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { colConfig } from '..'
 import '../style.css'
 
 const SignUpPage = () => {
@@ -7,30 +8,30 @@ const SignUpPage = () => {
 		<Container>
 			<h1 className="form_title">Sign up</h1>
 			{/* Email */}
-			<Form.Group className="mb-3">
+			<Col lg={colConfig}>
 				<Form.Label>Username</Form.Label>
 				<Form.Control type="text" />
-			</Form.Group>
+			</Col>
 
 			{/* Password */}
-			<Form.Group className="mb-3">
+			<Col lg={colConfig}>
 				<Form.Label>Password</Form.Label>
 				<Form.Control type="password" />
-			</Form.Group>
+			</Col>
 
 			{/* Confirm Password */}
-			<Form.Group className="mb-3">
+			<Col lg={colConfig}>
 				<Form.Label>Confirm your password</Form.Label>
 				<Form.Control type="password" />
-			</Form.Group>
+			</Col>
 
-			<Col className="form_link">
+			<Col lg={colConfig} className="form_link">
 				<Link to="/auth/sign-in">Already has an account?</Link>
 			</Col>
 
-			<div className="d-grid">
+			<Col lg={colConfig} className="d-grid">
 				<Button variant="primary">Sign Up</Button>
-			</div>
+			</Col>
 		</Container>
 	)
 }
