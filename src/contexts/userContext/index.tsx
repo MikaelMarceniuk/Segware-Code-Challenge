@@ -1,4 +1,5 @@
 import { createContext, Dispatch, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface IUser_Context {
 	user: string | undefined
@@ -12,10 +13,12 @@ export const useUserContext = () => useContext(userContext)
 
 const UserProvider: React.FC = ({ children }) => {
 	const [user, setUser] = useState<string | undefined>(undefined)
+	const navigate = useNavigate()
 
 	const signOut = () => {
 		localStorage.clear()
 		setUser(undefined)
+		navigate('/auth/sign-in')
 	}
 
 	return (
