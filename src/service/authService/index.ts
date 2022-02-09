@@ -1,9 +1,11 @@
 import { axiosInstance } from '../../libs'
-import { ISignUp } from './types'
+import utils from '../../utils'
+import { ISignUp, IUser } from './types'
 
 export default {
 	SignUp: async (value: ISignUp) => {
 		delete value['confirmPassword']
+		localStorage.removeItem('jwtToken')
 
 		try {
 			await axiosInstance.post('/sign-up', value)
@@ -13,7 +15,15 @@ export default {
 			console.log(e)
 		}
 	},
-	SignIn: () => {
-		console.log('AuthService SignIn')
+	SignIn: async (value: IUser) => {
+		try {
+			const { data } = await axiosInstance.post('/sign-in', value)
+			localStorage.setItem('jwtToken', data)
+			return utils.apiResp(true)
+		} catch (e) {
+			alert('Error in SignUp')
+			console.log(e)
+			return utils.apiResp(false)
+		}
 	},
 }
