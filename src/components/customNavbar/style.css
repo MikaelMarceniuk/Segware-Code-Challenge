@@ -1,0 +1,9 @@
+.brand_container {
+	display: flex;
+	align-items: center;
+}
+
+.brand_icon {
+	margin-right: 6px;
+	font-size: 2rem;
+}

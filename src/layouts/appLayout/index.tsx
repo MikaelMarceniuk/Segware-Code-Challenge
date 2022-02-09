@@ -1,11 +1,15 @@
+import { Container, Row } from 'react-bootstrap'
 import { Outlet } from 'react-router-dom'
+import { CustomNavbar } from '../../components'
 
 const AppLayout = () => {
 	return (
-		<div>
-			App Layout
+		<Container fluid>
+			<Row>
+				<CustomNavbar />
+			</Row>
 			<Outlet />
-		</div>
+		</Container>
 	)
 }
 
