@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Button, Col, Container, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { colConfig, EForm_Keys } from '..'
@@ -14,9 +14,10 @@ const SignInPage = () => {
 	const [formValues, setFormValues] = useState(defaultValues)
 	const navigate = useNavigate()
 
-	const handleChange = (key: EForm_Keys) => (e: any) => {
-		setFormValues({ ...formValues, [key]: e.target.value })
-	}
+	const handleChange =
+		(key: EForm_Keys) => (e: ChangeEvent<HTMLInputElement>) => {
+			setFormValues({ ...formValues, [key]: e.target.value })
+		}
 
 	const handleSubmit = async () => {
 		const { username, password } = formValues
