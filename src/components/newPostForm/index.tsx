@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { Button, Col, Form } from 'react-bootstrap'
+import { useHomePageContext } from '../../pages/home'
 import './style.css'
 
 const NewPostForm = () => {
 	const [postContent, setPostContent] = useState('')
+	const { onSharePost } = useHomePageContext()
 
-	const handleSubmit = () => {
-		console.log('postContent', postContent)
+	const handleSubmit = async () => {
+		const isSuccess = await onSharePost(postContent)
+		if (isSuccess) setPostContent('')
 	}
 
 	return (

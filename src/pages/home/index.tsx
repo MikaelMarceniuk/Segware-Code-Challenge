@@ -6,6 +6,7 @@ import { IFeed } from '../../service/feedService/type'
 
 interface IHomePage_Context {
 	onReactionClick: (feedId: number, isLike?: boolean) => void
+	onSharePost: (content: string) => Promise<boolean>
 }
 
 const homePageContext = createContext({} as IHomePage_Context)
@@ -37,8 +38,18 @@ const HomePage = () => {
 		}
 	}
 
+	const onSharePost = async (content: string) => {
+		const { isSuccess } = await feedService.submitFeed({ content })
+		if (!isSuccess) alert('Error in sharing new post')
+		else {
+			alert('Succefully shared your post')
+			await fetchFeed()
+		}
+		return isSuccess
+	}
+
 	return (
-		<homePageContext.Provider value={{ onReactionClick }}>
+		<homePageContext.Provider value={{ onReactionClick, onSharePost }}>
 			<Container fluid style={{ height: '100vh', marginTop: '1rem' }}>
 				<Row>
 					<Col>

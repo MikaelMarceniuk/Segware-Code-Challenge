@@ -13,30 +13,24 @@ export default {
 			console.log(e)
 		}
 	},
-	submitFeed: (content: ISubmitFeed) => {
+	submitFeed: async (body: ISubmitFeed) => {
 		try {
-			console.log(content)
-		} catch (e) {
-			alert('Error in submitFeed')
-			console.log(e)
-		}
-	},
-	reactFeed: async (value: IReactFeed) => {
-		try {
-			await axiosInstance.post('/reaction', value)
+			await axiosInstance.post('/feed', body)
 			return utils.apiResp(true)
 		} catch (e) {
-			alert('Error in upvoteFeed')
+			alert('Error in submitFeed')
 			console.log(e)
 			return utils.apiResp(false)
 		}
 	},
-	upvoteFeed: (value: IUpvoteFeed) => {
+	reactFeed: async (body: IReactFeed) => {
 		try {
-			console.log(value)
+			await axiosInstance.post('/reaction', body)
+			return utils.apiResp(true)
 		} catch (e) {
-			alert('Error in upvoteFeed')
+			alert('Error in reactFeed')
 			console.log(e)
+			return utils.apiResp(false)
 		}
 	},
 }
