@@ -22,8 +22,3 @@ export interface IReactFeed {
 	like: boolean
 	love: boolean
 }
-
-export interface IUpvoteFeed {
-	authorId: number
-	content: string
-}

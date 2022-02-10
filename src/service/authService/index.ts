@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import { ELocalStorageKeys } from '../../@types'
 import { axiosInstance } from '../../libs'
 import utils from '../../utils'
@@ -10,9 +11,9 @@ export default {
 
 		try {
 			await axiosInstance.post('/sign-up', value)
-			alert('Succefully in SignUp')
+			toast.success('Succefully in SignUp')
 		} catch (e) {
-			alert('Error in SignUp')
+			toast.error('Error in SignUp')
 			console.log(e)
 		}
 	},
@@ -25,7 +26,7 @@ export default {
 
 			return utils.apiResp(true)
 		} catch (e) {
-			alert('Error in SignUp')
+			toast.error('Error in SignUp')
 			console.log(e)
 			return utils.apiResp(false)
 		}

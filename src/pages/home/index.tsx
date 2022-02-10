@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { toast } from 'react-toastify'
 import { NewPostForm, FeedCard } from '../../components'
 import { feedService } from '../../service'
 import { IFeed } from '../../service/feedService/type'
@@ -31,18 +32,18 @@ const HomePage = () => {
 		isLike ? (body.like = true) : (body.like = false)
 
 		const { isSuccess } = await feedService.reactFeed(body)
-		if (!isSuccess) alert('Error in react to post')
+		if (!isSuccess) toast.error('Error in react to post')
 		else {
-			alert('Succefully reacted to post')
+			toast.success('Succefully reacted to post')
 			await fetchFeed()
 		}
 	}
 
 	const onSharePost = async (content: string) => {
 		const { isSuccess } = await feedService.submitFeed({ content })
-		if (!isSuccess) alert('Error in sharing new post')
+		if (!isSuccess) toast.error('Error in sharing new post')
 		else {
-			alert('Succefully shared your post')
+			toast.success('Succefully shared your post')
 			await fetchFeed()
 		}
 		return isSuccess

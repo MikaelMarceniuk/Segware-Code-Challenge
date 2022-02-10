@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { Button, Col, Container, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { colConfig, EForm_Keys } from '..'
 import { useUserContext } from '../../../contexts'
 import { authService } from '../../../service'
@@ -29,7 +30,7 @@ const SignInPage = () => {
 
 		const sendNotValidMessage = (msg: string) => {
 			isValid = false
-			alert(msg)
+			toast.error(msg)
 		}
 
 		//Username validation

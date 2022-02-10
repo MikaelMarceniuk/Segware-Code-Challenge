@@ -1,6 +1,7 @@
+import { toast } from 'react-toastify'
 import { axiosInstance } from '../../libs'
 import utils from '../../utils'
-import { IFeed, IReactFeed, ISubmitFeed, IUpvoteFeed } from './type'
+import { IFeed, IReactFeed, ISubmitFeed } from './type'
 
 export default {
 	getFeed: async () => {
@@ -9,7 +10,7 @@ export default {
 				await axiosInstance.get<IFeed[]>('/feeds')
 			).data
 		} catch (e) {
-			alert('Error in getFeed')
+			toast.error('Error in getFeed')
 			console.log(e)
 		}
 	},
@@ -18,7 +19,7 @@ export default {
 			await axiosInstance.post('/feed', body)
 			return utils.apiResp(true)
 		} catch (e) {
-			alert('Error in submitFeed')
+			toast.error('Error in submitFeed')
 			console.log(e)
 			return utils.apiResp(false)
 		}
@@ -28,7 +29,7 @@ export default {
 			await axiosInstance.post('/reaction', body)
 			return utils.apiResp(true)
 		} catch (e) {
-			alert('Error in reactFeed')
+			toast.error('Error in reactFeed')
 			console.log(e)
 			return utils.apiResp(false)
 		}
