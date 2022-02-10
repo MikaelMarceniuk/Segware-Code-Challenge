@@ -6,15 +6,30 @@ interface IProps {
 	isUpvote?: boolean
 	count: number
 	feedId: number
+	isTesting?: boolean
+	onClickHandler?: (feedId: number, isUpvote: boolean | undefined) => void
 }
 
-const FeedReaction: React.FC<IProps> = ({ isUpvote, count, feedId }) => {
-	const { onReactionClick } = useHomePageContext()
+const FeedReaction: React.FC<IProps> = ({
+	isUpvote,
+	count,
+	feedId,
+	isTesting,
+	onClickHandler,
+}) => {
+	const handleClick = () => {
+		isTesting && onClickHandler
+			? onClickHandler(feedId, isUpvote)
+			: useHomePageContext().onReactionClick(feedId, isUpvote)
+	}
+
+	const genTestIdPrefix = () => (isUpvote ? 'upvote' : 'love')
 
 	return (
 		<div
 			className="feedReaction_container"
-			onClick={() => onReactionClick(feedId, isUpvote)}
+			onClick={handleClick}
+			data-testid={`${genTestIdPrefix()}_feedReaction_container`}
 		>
 			{isUpvote ? <BsArrowUp /> : <BsHeartFill />} {count}
 		</div>
