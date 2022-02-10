@@ -12,9 +12,11 @@ export default {
 		try {
 			await axiosInstance.post('/sign-up', value)
 			toast.success('Succefully in SignUp')
+			return utils.apiResp(true)
 		} catch (e) {
 			toast.error('Error in SignUp')
 			console.log(e)
+			return utils.apiResp(false)
 		}
 	},
 	SignIn: async (value: IUser) => {

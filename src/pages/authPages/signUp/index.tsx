@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import { Container, Form, Button, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { colConfig, EForm_Keys } from '..'
 import { authService } from '../../../service'
@@ -14,13 +14,14 @@ const defaultValues = {
 
 const SignUpPage = () => {
 	const [formValues, setFormValues] = useState(defaultValues)
+	const navigate = useNavigate()
 
 	const handleChange =
 		(key: EForm_Keys) => (e: ChangeEvent<HTMLInputElement>) => {
 			setFormValues({ ...formValues, [key]: e.target.value })
 		}
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		const { username, password, confirmPassword } = formValues
 		const emptyMsg = ' must not be empty'
 		const atLeastMsg = ' must have at least 6 characters'
@@ -48,7 +49,13 @@ const SignUpPage = () => {
 		if (confirmPassword != password)
 			return sendNotValidMessage('Passwords does not match')
 
-		if (isValid) authService.SignUp({ ...formValues })
+		if (isValid) {
+			const { isSuccess } = await authService.SignUp({ ...formValues })
+			if (isSuccess) {
+				setFormValues(defaultValues)
+				navigate('/auth/sign-in')
+			}
+		}
 	}
 
 	return (
