@@ -29,7 +29,7 @@ const HomePage = () => {
 	const onReactionClick = async (feedId: number, isLike?: boolean) => {
 		const body = { feedId, like: false, love: false }
 
-		isLike ? (body.like = true) : (body.like = false)
+		isLike ? (body.like = true) : (body.love = true)
 
 		const { isSuccess } = await feedService.reactFeed(body)
 		if (!isSuccess) toast.error('Error in react to post')
