@@ -11,3 +11,8 @@ export interface IPage {
 	path: string
 	component: React.FC
 }
+
+export enum ELocalStorageKeys {
+	USERNAME = 'username',
+	ACESS_TOKEN = 'acessToken',
+}

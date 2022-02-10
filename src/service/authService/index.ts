@@ -1,3 +1,4 @@
+import { ELocalStorageKeys } from '../../@types'
 import { axiosInstance } from '../../libs'
 import utils from '../../utils'
 import { ISignUp, IUser } from './types'
@@ -19,8 +20,8 @@ export default {
 		try {
 			const { data } = await axiosInstance.post('/sign-in', value)
 
-			localStorage.setItem('username', value.username)
-			localStorage.setItem('jwtToken', data)
+			localStorage.setItem(ELocalStorageKeys.USERNAME, value.username)
+			localStorage.setItem(ELocalStorageKeys.ACESS_TOKEN, data)
 
 			return utils.apiResp(true)
 		} catch (e) {

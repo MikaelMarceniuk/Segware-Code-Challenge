@@ -1,13 +1,13 @@
 import { BrowserRouter } from 'react-router-dom'
-import { UserProvider } from './contexts'
+import AllProviders from './contexts'
 import Router from './router'
 
 const App = () => {
 	return (
 		<BrowserRouter>
-			<UserProvider>
+			<AllProviders>
 				<Router />
-			</UserProvider>
+			</AllProviders>
 		</BrowserRouter>
 	)
 }
