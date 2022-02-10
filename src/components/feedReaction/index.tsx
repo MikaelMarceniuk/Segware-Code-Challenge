@@ -17,10 +17,13 @@ const FeedReaction: React.FC<IProps> = ({
 	isTesting,
 	onClickHandler,
 }) => {
+	let homeReactClick: (feedId: number, isLike?: boolean | undefined) => void
+	if (!isTesting) homeReactClick = useHomePageContext().onReactionClick
+
 	const handleClick = () => {
 		isTesting && onClickHandler
 			? onClickHandler(feedId, isUpvote)
-			: useHomePageContext().onReactionClick(feedId, isUpvote)
+			: homeReactClick(feedId, isUpvote)
 	}
 
 	const genTestIdPrefix = () => (isUpvote ? 'upvote' : 'love')
