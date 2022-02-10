@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { Container, Form, Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { colConfig, EForm_Keys } from '..'
 import { authService } from '../../../service'
 import '../style.css'
@@ -27,7 +28,7 @@ const SignUpPage = () => {
 
 		const sendNotValidMessage = (msg: string) => {
 			isValid = false
-			alert(msg)
+			toast.error(msg)
 		}
 
 		//Username validation

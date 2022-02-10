@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import { ELocalStorageKeys } from '../../@types'
 
 const axiosInstance = axios.create({
@@ -15,7 +16,10 @@ axiosInstance.interceptors.request.use((cfg) => {
 
 axiosInstance.interceptors.response.use((resp) => {
 	const { status } = resp
-	if (status == 401) localStorage.clear()
+	if (status == 401) {
+		localStorage.clear()
+		toast.error('Session expired')
+	}
 
 	return resp
 })
