@@ -1,3 +1,4 @@
+import { ELocalStorageKeys } from '../../@types'
 import { axiosInstance } from '../../libs'
 import utils from '../../utils'
 import { ISignUp, IUser } from './types'
@@ -5,7 +6,7 @@ import { ISignUp, IUser } from './types'
 export default {
 	SignUp: async (value: ISignUp) => {
 		delete value['confirmPassword']
-		localStorage.removeItem('jwtToken')
+		localStorage.clear()
 
 		try {
 			await axiosInstance.post('/sign-up', value)
@@ -18,7 +19,10 @@ export default {
 	SignIn: async (value: IUser) => {
 		try {
 			const { data } = await axiosInstance.post('/sign-in', value)
-			localStorage.setItem('jwtToken', data)
+
+			localStorage.setItem(ELocalStorageKeys.USERNAME, value.username)
+			localStorage.setItem(ELocalStorageKeys.ACESS_TOKEN, data)
+
 			return utils.apiResp(true)
 		} catch (e) {
 			alert('Error in SignUp')

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Button, Col, Container, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { colConfig, EForm_Keys } from '..'
+import { useUserContext } from '../../../contexts'
 import { authService } from '../../../service'
 import '../style.css'
 
@@ -12,11 +13,13 @@ const defaultValues = {
 
 const SignInPage = () => {
 	const [formValues, setFormValues] = useState(defaultValues)
+	const { setUser } = useUserContext()
 	const navigate = useNavigate()
 
-	const handleChange = (key: EForm_Keys) => (e: any) => {
-		setFormValues({ ...formValues, [key]: e.target.value })
-	}
+	const handleChange =
+		(key: EForm_Keys) => (e: ChangeEvent<HTMLInputElement>) => {
+			setFormValues({ ...formValues, [key]: e.target.value })
+		}
 
 	const handleSubmit = async () => {
 		const { username, password } = formValues
@@ -41,7 +44,10 @@ const SignInPage = () => {
 
 		if (isValid) {
 			const { isSuccess } = await authService.SignIn({ ...formValues })
-			if (isSuccess) navigate('/')
+			if (isSuccess) {
+				setUser(formValues.username)
+				navigate('/')
+			}
 		}
 	}
 

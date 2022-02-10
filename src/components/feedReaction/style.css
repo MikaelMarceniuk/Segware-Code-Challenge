@@ -1,0 +1,26 @@
+.feedReaction_container {
+	width: fit-content;
+	height: fit-content;
+	padding: 0.4rem;
+	margin-right: 1rem;
+	margin-top: 0.5rem;
+
+	border: 1px solid gray;
+	border-radius: 6px;
+
+	cursor: pointer;
+}
+
+.feedReaction_container:hover {
+	border: 1px solid rgb(95, 217, 251);
+	background-color: rgb(95, 217, 251);
+}
+
+.feedReaction_container:active {
+	background-color: gray;
+}
+
+.feedReaction_container svg {
+	font-size: 1.2rem;
+	margin-right: 6px;
+}

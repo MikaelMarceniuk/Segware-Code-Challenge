@@ -1,3 +1,4 @@
 import authService from './authService'
+import feedService from './feedService'
 
-export { authService }
+export { authService, feedService }

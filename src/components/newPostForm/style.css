@@ -1,0 +1,17 @@
+.wrapper {
+	padding: 1rem;
+
+	border: 1px solid gray;
+	border-radius: 6px;
+	/* background-color: red; */
+}
+
+.form_textarea {
+	height: 120px;
+	max-height: 120px;
+	resize: none;
+}
+
+.form_btn_container {
+	margin-top: 1rem;
+}

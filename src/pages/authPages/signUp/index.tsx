@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Container, Form, Button, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { colConfig, EForm_Keys } from '..'
@@ -14,9 +14,10 @@ const defaultValues = {
 const SignUpPage = () => {
 	const [formValues, setFormValues] = useState(defaultValues)
 
-	const handleChange = (key: EForm_Keys) => (e: any) => {
-		setFormValues({ ...formValues, [key]: e.target.value })
-	}
+	const handleChange =
+		(key: EForm_Keys) => (e: ChangeEvent<HTMLInputElement>) => {
+			setFormValues({ ...formValues, [key]: e.target.value })
+		}
 
 	const handleSubmit = () => {
 		const { username, password, confirmPassword } = formValues

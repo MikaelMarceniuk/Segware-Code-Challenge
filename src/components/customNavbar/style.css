@@ -1,0 +1,20 @@
+.brand_container {
+	display: flex;
+	align-items: center;
+}
+
+.brand_icon {
+	margin-right: 6px;
+	font-size: 2rem;
+}
+
+.signin_text {
+	margin-right: 1rem;
+	font-weight: 600;
+	font-size: 1.1rem;
+	color: black !important;
+}
+
+.newpost_btn {
+	margin-left: 1rem;
+}
