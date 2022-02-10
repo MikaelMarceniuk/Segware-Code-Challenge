@@ -27,7 +27,6 @@ export default {
 			return utils.apiResp(true)
 		} catch (e) {
 			toast.error('Error in SignUp')
-			console.log(e)
 			return utils.apiResp(false)
 		}
 	},

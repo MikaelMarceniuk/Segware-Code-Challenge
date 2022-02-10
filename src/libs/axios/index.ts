@@ -4,7 +4,7 @@ import { ELocalStorageKeys } from '../../@types'
 
 const axiosInstance = axios.create({
 	baseURL: 'https://segware-book-api.segware.io/api',
-	timeout: 1000,
+	timeout: 10000,
 })
 
 axiosInstance.interceptors.request.use((cfg) => {
